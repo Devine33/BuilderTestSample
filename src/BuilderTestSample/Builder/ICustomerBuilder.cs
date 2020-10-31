@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BuilderTestSample.Builder
 {
-    public interface ICustomerBuilder //: IBuilder
+    public interface ICustomerBuilder
     {
         void Reset();
         void Build();

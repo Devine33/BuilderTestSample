@@ -1,4 +1,5 @@
-﻿using BuilderTestSample.Model;
+﻿using BuilderTestSample.Builder;
+using BuilderTestSample.Model;
 
 namespace BuilderTestSample.Tests.TestBuilders
 {
@@ -7,7 +8,7 @@ namespace BuilderTestSample.Tests.TestBuilders
     /// </summary>
     public class OrderBuilder
     {
-        private Order _order = new Order();
+        private readonly Order _order = new Order();
 
         public OrderBuilder Id(int id)
         {
@@ -23,10 +24,18 @@ namespace BuilderTestSample.Tests.TestBuilders
         public OrderBuilder WithTestValues()
         {
             _order.TotalAmount = 100m;
+            var addressBuilder = new AddressBuilder();
+            var customerBuilder = new CustomerBuilder();
 
-            // TODO: replace next lines with a CustomerBuilder you create
-            // _order.Customer = new Customer();
-            // _order.Customer.HomeAddress = new Address();
+            var addressDirector = new Director.Director(addressBuilder);
+            var customerDirector = new Director.Director(customerBuilder);
+
+            customerDirector.MakeCustomer();
+            addressDirector.MakeAddress();
+
+
+            _order.Customer = customerBuilder.GetProduct();
+            _order.Customer.HomeAddress = addressBuilder.GetProduct();
 
             return this;
         }
