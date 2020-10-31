@@ -14,12 +14,13 @@ namespace BuilderTestSample.Builder
         public void Build()
         {
             _customer.HomeAddress = new Address();
-            _customer.CreditRating = 1;
+            _customer.CreditRating = 501;
             _customer.FirstName = "Ted";
             _customer.LastName = "Crilly";
             _customer.OrderHistory = new List<Order>();
-            _customer.TotalPurchases = 3.4m;
+            _customer.TotalPurchases = 5001m;
         }
+
 
         public Customer GetProduct()
         {
